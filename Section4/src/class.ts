@@ -1,6 +1,10 @@
 class Person {
+  static species = 'Homo sapiens';
+  static isAdult(age: number) {
+    if (age > 17) return true;
+    return false;
+  }
   readonly id: number = 32;
-
   // // デフォルトはpublic
   // public name: string;
   // // privateを使うことでクラスの中でしか使えない
@@ -58,7 +62,9 @@ class Teacher extends Person {
   }
 }
 
-const teacher = new Teacher('Quill', 38, 'Math')
-teacher.subject = "Music"
-console.log(teacher.subject);
-teacher.greeting();
+// const teacher = new Teacher('Quill', 38, 'Math')
+// teacher.subject = "Music"
+// console.log(teacher.subject);
+// teacher.greeting();
+// Math.random()
+console.log(Person.species);
