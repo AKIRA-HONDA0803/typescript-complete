@@ -1,13 +1,21 @@
 class Person {
+  readonly id: number = 32;
 
-  // デフォルトはpublic
-  public name: string;
-  // privateを使うことでクラスの中でしか使えない
-  private age: number;
+  // // デフォルトはpublic
+  // public name: string;
+  // // privateを使うことでクラスの中でしか使えない
+  // private age: number;
 
-  constructor(initName: string, initAge:number) {
-    this.name = initName;
-    this.age = initAge;
+  // constructor(initName: string, initAge:number) {
+  //   this.name = initName;
+  //   this.age = initAge;
+  // }
+
+  // 簡略化
+  constructor(public readonly name:string, private age: number) {
+    // ここではreadonlyにならない
+    this.id = 31;
+    this.name = 'hehh'
   }
   incrementAge() {
     this.age += 1;
