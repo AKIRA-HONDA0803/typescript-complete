@@ -1,4 +1,5 @@
-class Person {
+// abstractは継承のみに使われるクラス
+abstract class Person {
   static species = 'Homo sapiens';
   static isAdult(age: number) {
     if (age > 17) return true;
@@ -28,7 +29,10 @@ class Person {
 
   greeting(this: Person) {
     console.log(`Hello! My name is ${this.name}. I am ${this.age} years old`)
+    this.explainJob();
   }
+  // 継承先で必ずexplainJobというメソッドが必要になる。
+  abstract explainJob()
 }
 // const quill = new Person('Quill');
 // quill.greeting()
@@ -39,12 +43,15 @@ class Person {
 // }
 // anotherQuill.greeting
 
-let person2: Person;
-const quill = new Person('Quill', 38);
-quill.incrementAge();
-quill.greeting();
+// let person2: Person;
+// const quill = new Person('Quill', 38);
+// quill.incrementAge();
+// quill.greeting();
 
 class Teacher extends Person {
+  explainJob() {
+    console.log(`I am a teacher and ${this.subject}`);
+  }
   get subject() {
     if (!this._subject) {
     throw new Error('There is no subject');
@@ -58,13 +65,13 @@ class Teacher extends Person {
     super(name, age);
   }
   greeting() {
-    console.log(`Hello! My name is ${this.name}. I am ${this.age} years old`)
+    console.log(`Hello! My name is ${this.name}. I am ${this.age} years old. I teach ${this.subject}`);
   }
 }
 
-// const teacher = new Teacher('Quill', 38, 'Math')
+const teacher = new Teacher('Quill', 38, 'Math')
 // teacher.subject = "Music"
 // console.log(teacher.subject);
-// teacher.greeting();
+teacher.greeting();
 // Math.random()
 console.log(Person.species);
