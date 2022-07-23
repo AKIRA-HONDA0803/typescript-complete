@@ -32,7 +32,7 @@ abstract class Person {
     this.explainJob();
   }
   // 継承先で必ずexplainJobというメソッドが必要になる。
-  abstract explainJob()
+  abstract explainJob(): void;
 }
 // const quill = new Person('Quill');
 // quill.greeting()
@@ -49,6 +49,7 @@ abstract class Person {
 // quill.greeting();
 
 class Teacher extends Person {
+  private static instance: Teacher;
   explainJob() {
     console.log(`I am a teacher and ${this.subject}`);
   }
@@ -61,17 +62,26 @@ class Teacher extends Person {
   set subject(value) {
     this._subject = value;
   }
-  constructor(name: string, age: number, private _subject: string) {
+  // constructorの前にprivateを定義することで、クラスを作成できなくなる
+  // シングルトンパターン
+  private constructor(name: string, age: number, private _subject: string) {
     super(name, age);
   }
-  greeting() {
-    console.log(`Hello! My name is ${this.name}. I am ${this.age} years old. I teach ${this.subject}`);
+  static getInstance() {
+    if (Teacher.instance) return Teacher.instance;
+    Teacher.instance = new Teacher('Quill', 38, 'Math')
+    return Teacher.instance;
   }
+  // greeting() {
+  //   console.log(`Hello! My name is ${this.name}. I am ${this.age} years old. I teach ${this.subject}`);
+  // }
 }
 
-const teacher = new Teacher('Quill', 38, 'Math')
+// const teacher = new Teacher('Quill', 38, 'Math')
 // teacher.subject = "Music"
 // console.log(teacher.subject);
-teacher.greeting();
+// teacher.greeting();
 // Math.random()
 console.log(Person.species);
+
+const teacher = Teacher.getInstance();
