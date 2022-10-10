@@ -1,9 +1,24 @@
+// type addFunc = (num1: number, num2: number) => number;
+// 関数の型を定義
+interface addFunc {
+  (num1: number, um2: number): number;
+}
+let addFunc: addFunc;
+addFunc = (n1: number, n2: number) => {
+  return n1 + n2;
+}
+
+interface Nameable {
+  name: string;
+}
+
 // type Human = {
 //   name: string;
 //   age: number;
 // }
-interface Human  {
-  name: string;
+interface Human extends Nameable{
+  // extendsしたものは条件によっては上書きできる。
+  // name: string;
   age: number;
   // メソッドの定義
   greeting(message: string): void;
