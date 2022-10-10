@@ -9,7 +9,13 @@ addFunc = (n1: number, n2: number) => {
 }
 
 interface Nameable {
-  name: string;
+  name?: string;
+  nickName?: string;
+}
+
+const nameable: Nameable = {
+  name: 'Quill',
+  nickName: 'Quilla'
 }
 
 // type Human = {
@@ -34,7 +40,11 @@ const human: Human = {
 // let developer: Human;
 
 class Developer implements Human {
-  constructor(public name: string, public age: number, public experience: number)
+  name?: string
+  constructor(initName?: string, public age: number, public experience: number)
+    if (initName) {
+      this.name = initName
+    }
   greeting(message: string) {
     console.log('Hello!');
   }
