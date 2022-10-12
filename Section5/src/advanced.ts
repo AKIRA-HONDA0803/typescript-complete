@@ -17,12 +17,12 @@ type NumberBoolean = number | boolean;
 type StringNumber = string | number;
 type Mix = NumberBoolean & StringNumber;
 
-function toUpperCase(x: string | number) {
-  if (typeof x === 'string') {
-    return x.toUpperCase();
-  }
-  return '';
-}
+// function toUpperCase(x: string | number) {
+//   if (typeof x === 'string') {
+//     return x.toUpperCase();
+//   }
+//   return '';
+// }
 type NomadWorker = Engineer | Blogger
 function describeProfile(nomadWorker: NomadWorker) {
   console.log(nomadWorker.name);
@@ -78,3 +78,32 @@ const designer: Designer = {
   name: 'Quill'
 }
 
+// 関数のオーバーロード
+function toUpperCase(x: string): string;
+function toUpperCase(x: number): number;
+function toUpperCase(x: string | number): string | number {
+  if (typeof x === 'string') {
+    return x.toUpperCase();
+  }
+  return x;
+}
+// string
+// const upperHello = toUpperCase('hello')
+// number
+// const upperHello = toUpperCase(22)
+
+// Optional Chaining
+interface DownloadedData {
+  id: number;
+  user?: {
+    name?: {
+      first: string;
+      last: string;
+    }
+  }
+}
+const downloadedData: DownloadedData = {
+  id: 1
+}
+// downloadedData.userがnullかundefinedであればundefinedを返す
+console.log(downloadedData.user?.name?.first);
