@@ -107,3 +107,12 @@ const downloadedData: DownloadedData = {
 }
 // downloadedData.userがnullかundefinedであればundefinedを返す
 console.log(downloadedData.user?.name?.first);
+
+// Nullish Coalescing
+// or演算子 || でも使える
+const userData = downloadedData.user ?? 'no-user';
+
+// LookUp型 オブジェクトの型のメンバーの型を取得する
+// userの?を外す
+// type id = DownloadedData["user"]["name"]
+type id = DownloadedData["id"]
