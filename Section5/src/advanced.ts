@@ -57,3 +57,10 @@ function havePet(pet: Pet) {
     pet.fly();
   }
 }
+
+// HTMLElement | null
+// const input = document.getElementById('input');
+// 型アサーション① JSX使用の時は非推奨
+// const input = <HTMLInputElement>document.getElementById('input');
+// 型アサーション②
+const input = document.getElementById('input') as HTMLInputElement;
