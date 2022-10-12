@@ -64,3 +64,17 @@ function havePet(pet: Pet) {
 // const input = <HTMLInputElement>document.getElementById('input');
 // 型アサーション②
 const input = document.getElementById('input') as HTMLInputElement;
+
+//!(Non-null assertion operator)を使うとnullではないと言い切る
+// const input = document.getElementById('input')!;
+
+interface Designer {
+  name: string;
+  // インデックスシグネチャ
+  [index: string]: string
+}
+
+const designer: Designer = {
+  name: 'Quill'
+}
+
