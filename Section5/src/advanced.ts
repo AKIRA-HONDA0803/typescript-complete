@@ -116,3 +116,30 @@ const userData = downloadedData.user ?? 'no-user';
 // userの?を外す
 // type id = DownloadedData["user"]["name"]
 type id = DownloadedData["id"]
+
+// 型の互換性の仕様
+enum Color {
+  RED,
+  BLUE
+}
+class AdvancedPerson {
+  name: string = 'Peter'
+  age: number = 35;
+}
+class AdvancedCar {
+  name: string = 'Prius'
+  age: number = 5;
+}
+let target = new AdvancedPerson();
+let source = new AdvancedCar();
+// let target = function (a: string, b: string) { }
+// let source = function (a: string) { }
+// let source = 0;
+// let target = Color.RED
+// let source = 0;
+// let target = 'hello'
+// let source: 'hello' = 'hello'
+target = source;
+// target('hi', 'hello');
+
+// cf Type Compatibility
