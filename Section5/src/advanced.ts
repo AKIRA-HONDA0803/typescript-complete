@@ -143,3 +143,38 @@ target = source;
 // target('hi', 'hello');
 
 // cf Type Compatibility
+
+// 関数型のオーバーロードはinterfaceで定義する必要がある
+
+interface TmpFunc {
+  (x: string): string;
+  (x: number): number;
+}
+
+const upperHello : TmpFunc = function (x: string | number) { return 0 };
+// const upperHello = toUpperCase;
+interface FuncA {
+  (a: number, b: string): number;
+  (a: string, b: number): number;
+}
+interface FuncB {
+  (a: string): number;
+}
+// &の順番によってオーバーロードされる順番が変わる
+let intersectionFunc: FuncA & FuncB;
+intersectionFunc = function (a: number | string, b?: number | string) { return }
+
+
+// 関数型のユニオン型
+interface FuncA {
+  (a: number): number;
+}
+interface FuncB {
+  (a: string): string;
+}
+let unionFunc: FuncA | FuncB;
+// let unionFanc: (a: never) => number;
+// 引数は使えない
+// unionFunc();
+unionFunc = function (a: number) { return 3 }
+unionFunc();
