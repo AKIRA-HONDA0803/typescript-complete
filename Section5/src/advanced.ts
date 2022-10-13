@@ -178,3 +178,36 @@ let unionFunc: FuncA | FuncB;
 // unionFunc();
 unionFunc = function (a: number) { return 3 }
 unionFunc();
+
+// レストパラメーターに配列やタプルを指定する
+
+// 3つの引数があることを省略して記載
+// ...number[]のような記述はタプルだとできる
+// function advancedFn(...args: [number, string, boolean?, ...number[]]) {
+
+// }
+// advancedFn(0, 'hi', true, 3,3,3,3)
+
+// 配列とタプルにreadonly修飾詞をつける
+
+function advancedFn(...args: readonly number[]) {
+
+}
+advancedFn(0, 1)
+
+// constアサーションはこう使う
+
+const milk = 'milk' as const;
+// letをconstにして終えば良い...?
+let drink = milk;
+// readonly修飾詞がついている
+const array = [10, 20] as const;
+const peter = {
+  name: 'Peter',
+  age: 38
+} as const;
+
+// 型の中でtypeofを使う
+
+// typeof 値　でその値の型を取得する
+type PeterType = typeof peter;
